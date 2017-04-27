@@ -1,0 +1,13 @@
+# ninja log v5
+0	177	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+177	234	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053
+0	192	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+192	257	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053
+0	257	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+257	337	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053
+1	247	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+247	304	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053
+2	287	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+287	355	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053
+0	364	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	4c1cde8e90c219e5
+364	424	0	../../../../build/intermediates/cmake/release/obj/mips/libFileScanner.so	28ceeeedeb408053

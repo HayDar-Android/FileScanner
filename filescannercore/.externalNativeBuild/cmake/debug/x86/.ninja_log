@@ -1,0 +1,7 @@
+# ninja log v5
+0	110	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	9a5d4f8638351b1d
+110	196	0	../../../../build/intermediates/cmake/debug/obj/x86/libFileScanner.so	5163e90cd8e6c764
+0	145	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	9a5d4f8638351b1d
+145	191	0	../../../../build/intermediates/cmake/debug/obj/x86/libFileScanner.so	5163e90cd8e6c764
+1	152	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	9a5d4f8638351b1d
+152	206	0	../../../../build/intermediates/cmake/debug/obj/x86/libFileScanner.so	5163e90cd8e6c764

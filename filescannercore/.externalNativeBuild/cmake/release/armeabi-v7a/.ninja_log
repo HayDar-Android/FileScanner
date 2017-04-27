@@ -1,0 +1,13 @@
+# ninja log v5
+0	227	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+227	327	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7
+0	256	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+256	354	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7
+0	297	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+297	422	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7
+1	239	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+239	333	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7
+1	608	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+608	734	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7
+1	607	0	CMakeFiles/FileScanner.dir/src/main/cpp/FilesScanner.cpp.o	2f6fb3c1998ae182
+607	687	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libFileScanner.so	91344ea74fb472b7

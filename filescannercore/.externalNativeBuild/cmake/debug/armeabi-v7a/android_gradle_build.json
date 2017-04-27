@@ -1,0 +1,41 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/gjy/Documents/dev/study/FileScanner/filescannercore/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/cmake/3.6.3155560/bin/cmake --build /Users/gjy/Documents/dev/study/FileScanner/filescannercore/.externalNativeBuild/cmake/debug/armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"FileScanner-Debug-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "FileScanner",
+			"buildCommand" : "/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/cmake/3.6.3155560/bin/cmake --build /Users/gjy/Documents/dev/study/FileScanner/filescannercore/.externalNativeBuild/cmake/debug/armeabi-v7a --target FileScanner",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/sysroot  -DFileScanner_EXPORTS -isystem /Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem /Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -isystem /Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=15 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/gjy/Documents/dev/study/FileScanner/filescannercore/src/main/cpp/FilesScanner.cpp",
+					"workingDirectory" : "/Users/gjy/Documents/dev/study/FileScanner/filescannercore/.externalNativeBuild/cmake/debug/armeabi-v7a"
+				}
+			],
+			"output" : "/Users/gjy/Documents/dev/study/FileScanner/filescannercore/build/intermediates/cmake/debug/obj/armeabi-v7a/libFileScanner.so",
+			"toolchain" : "12484882710303772871"
+		}
+	},
+	"toolchains" : 
+	{
+		"12484882710303772871" : 
+		{
+			"cCompilerExecutable" : "/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/gjy/Documents/dev/adt-bundle-mac-x86_64-20140702/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}
