@@ -1,9 +1,9 @@
-# FileScanner <a href='https://bintray.com/haydar-android/maven/FileScanner?source=watch' alt='Get automatic notifications about new "FileScanner" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
+# FileScanner [ ![Download](https://api.bintray.com/packages/haydar-android/maven/FileScanner/images/download.svg) ](https://bintray.com/haydar-android/maven/FileScanner/_latestVersion) <a href='https://bintray.com/haydar-android/maven/FileScanner?source=watch' alt='Get automatic notifications about new "FileScanner" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
 ## Android SD卡扫描某类文件(.mp3、.mp4...)
 ### 使用方法
 ``` gradlew
 
-compile 'io.haydar.filescanner:FileScanner:1.0'
+compile 'io.haydar.filescanner:filescannercore:1.0'
 
 ```
 ### 描述

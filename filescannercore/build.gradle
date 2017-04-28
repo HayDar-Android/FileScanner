@@ -5,7 +5,7 @@ ext {
 
     publishedGroupId = 'io.haydar.filescanner'
     libraryName = 'FileScanner'
-    artifact = 'FileScanner'
+    artifact = 'filescannercore'
 
     libraryDescription = 'Android FileScanner'
 
@@ -25,7 +25,7 @@ ext {
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    resourcePrefix "FileScanner"
+
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
