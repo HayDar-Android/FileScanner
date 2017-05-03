@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.os.Message;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.haydar.filescanner.db.DBFilesHelper;
 import io.haydar.filescanner.db.DBFolderHelper;
@@ -43,7 +44,6 @@ public class LocalFileCacheManager {
         return instance;
     }
 
-
     private LocalFileCacheManager(Context context) {
         DBManager.open(context);    //初始化数据库
         mWorkThread = new HandlerThread("ScanWorker");
@@ -51,8 +51,6 @@ public class LocalFileCacheManager {
         mWorkHandler = new WorkHandler(mWorkThread.getLooper());
         mDBFolderHelper = new DBFolderHelper(context);
         mDBFilesHelper = new DBFilesHelper(context);
-
-
     }
 
 
@@ -74,7 +72,7 @@ public class LocalFileCacheManager {
             String folder_id = ScannerUtil.getFolderId(localDirsArrayList.get(i).getFilePath());
             ArrayList<FileInfo> filesArrayList = ScannerWrapper.scanFiles(localDirsArrayList.get(i).getFilePath(), FileScanner.getType());
             //循环文件列表,文件插入到文件列表中
-            mDBFilesHelper.insertNewFiles(filesArrayList, folder_id);
+            mDBFilesHelper.insertNewFiles(filesArrayList, folder_id,mCommonListener);
             localDirsArrayList.get(i).setCount(filesArrayList.size());
         }
         mDBFolderHelper.insertNewDirs(localDirsArrayList);
@@ -177,17 +175,37 @@ public class LocalFileCacheManager {
             if (newFilesList == null || newFilesList.size() == 0) {
                 fileInfo.setCount(0);
                 if (fileInfo.getCount() > 0) {
-                    mDBFilesHelper.deleteFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()));
+                    mDBFilesHelper.deleteFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()), mCommonListener);
                 }
             } else {
                 fileInfo.setCount(newFilesList.size());
                 //如果扫描目录中有文件，需要判断数据库中此目录的文件数量是否大于0，如果大于0，先删除，在添加
-                if (fileInfo.getCount() > 0) {
-                    mDBFilesHelper.deleteFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()));
+                if (fileInfo.getCount() == 0) {
+                    mDBFilesHelper.insertNewFiles(newFilesList, ScannerUtil.getFolderId(fileInfo.getFilePath()), mCommonListener);
+                } else {
+                    List<FileInfo> dirList = mDBFilesHelper.getFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()));
+                    for (int i1 = 0; i1 < dirList.size(); i1++) {
+                        boolean flag = false;
+                        for (int i2 = 0; i2 < newFilesList.size(); i2++) {
+                            if (dirList.get(i1).getFilePath().equals(newFilesList.get(i2).getFilePath())) {
+                                flag = true;
+                                newFilesList.remove(i2);
+                                break;
+                            }
+                        }
+                        if (!flag) {
+                            //删除数据表中的数据
+                            mDBFilesHelper.deleteFile(dirList.get(i1).getFilePath());
+                            if(mCommonListener!=null){
+                                mCommonListener.onScanningFiles(dirList.get(i1),FileScanner.SCANNER_TYPE_DEL);
+                            }
+                        }
+                    }
+                    if (newFilesList.size() > 0) {
+                        mDBFilesHelper.insertNewFiles(newFilesList, ScannerUtil.getFolderId(fileInfo.getFilePath()), mCommonListener);
+                    }
                 }
-                mDBFilesHelper.insertNewFiles(newFilesList, ScannerUtil.getFolderId(fileInfo.getFilePath()));
             }
-
             //扫描目录中的文件夹(不扫描子目录)
             ArrayList<FileInfo> newDirsList = ScannerWrapper.scanUpdateDirs(fileInfo.getFilePath());
             if (newDirsList == null || newDirsList.size() == 0) {
@@ -217,7 +235,7 @@ public class LocalFileCacheManager {
         if (deleteDirsList.size() > 0) {
             for (FileInfo fileInfo : deleteDirsList) {
                 if (fileInfo.getCount() > 0) {
-                    mDBFilesHelper.deleteFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()));
+                    mDBFilesHelper.deleteFilesByFolderId(ScannerUtil.getFolderId(fileInfo.getFilePath()),mCommonListener);
                 }
             }
             mDBFolderHelper.deleteFolder(deleteDirsList);
@@ -279,7 +297,7 @@ public class LocalFileCacheManager {
     }
 
     public ArrayList<FileInfo> getAllFiles() {
-      return   mDBFilesHelper.getAllFiles();
+        return mDBFilesHelper.getAllFiles();
     }
 
 

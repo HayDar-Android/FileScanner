@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.haydar.filescanner.FileInfo;
+import io.haydar.filescanner.FileScanner;
 
 /**
  * @author Haydar
@@ -35,7 +37,7 @@ public class DBFilesHelper {
 
     }
 
-    public void insertNewFiles(ArrayList<FileInfo> filesArrayList, String folder_id) {
+    public void insertNewFiles(ArrayList<FileInfo> filesArrayList, String folder_id, FileScanner.ScannerListener mCommonListener) {
         DBManager.getWriteDB(mContext).beginTransaction();
         try {
             for (FileInfo fileInfo : filesArrayList) {
@@ -47,6 +49,9 @@ public class DBFilesHelper {
                 contentValues.put(FilesDBContract.COLUMN_NAME_SIZE, fileInfo.getFileSize());
                 contentValues.put(FilesDBContract.COLUMN_NAME_FOLDER_ID, folder_id);
                 DBManager.getWriteDB(mContext).insert(FilesDBContract.TABLE_NAME, null, contentValues);
+                if (mCommonListener != null) {
+                    mCommonListener.onScanningFiles(fileInfo, FileScanner.SCANNER_TYPE_ADD);
+                }
             }
             DBManager.getWriteDB(mContext).setTransactionSuccessful();
         } catch (Exception e) {
@@ -60,9 +65,17 @@ public class DBFilesHelper {
         DBManager.getWriteDB(mContext).delete(FilesDBContract.TABLE_NAME, null, null);
     }
 
-    public void deleteFilesByFolderId(String folderId) {
+    public void deleteFilesByFolderId(String folderId, FileScanner.ScannerListener mCommonListener) {
+        if (mCommonListener != null) {
+            List<FileInfo> delList = getFilesByFolderId(folderId);
+            for (FileInfo fileInfo : delList) {
+                mCommonListener.onScanningFiles(fileInfo, FileScanner.SCANNER_TYPE_DEL);
+            }
+        }
         String whereClause = FilesDBContract.COLUMN_NAME_FOLDER_ID + "=" + folderId;
         DBManager.getWriteDB(mContext).delete(FilesDBContract.TABLE_NAME, whereClause, null);
+
+
     }
 
     public ArrayList<FileInfo> getFilesByFolderId(String folderId) {
@@ -100,7 +113,7 @@ public class DBFilesHelper {
         Cursor cursor = null;
         ArrayList<FileInfo> filesList = null;
         try {
-            cursor = DBManager.getReadDB(mContext).rawQuery("SELECT * FROM " + FilesDBContract.TABLE_NAME , null);
+            cursor = DBManager.getReadDB(mContext).rawQuery("SELECT * FROM " + FilesDBContract.TABLE_NAME, null);
             if (cursor == null) {
                 return null;
             }
@@ -125,6 +138,12 @@ public class DBFilesHelper {
             }
         }
         return filesList;
+    }
+
+    public void deleteFile(String filePath) {
+        String whereClause = FilesDBContract.COLUMN_NAME_DATA + "=" + "'"+filePath+"'";
+        DBManager.getWriteDB(mContext).delete(FilesDBContract.TABLE_NAME, whereClause, null);
+
     }
 
     private static class FilesDBContract {

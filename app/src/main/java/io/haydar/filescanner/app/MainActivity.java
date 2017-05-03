@@ -43,25 +43,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fileScanner() {
-        FileScanner.getInstance(this).clear();
-        FileScanner.getInstance(this).setType(".png").start(new FileScanner.ScannerListener() {
+        //FileScanner.getInstance(this).clear();
+        FileScanner.getInstance(this).setType(".mp3").start(new FileScanner.ScannerListener() {
             @Override
             public void onScanBegin() {
-                Log.d(TAG, "onScanBegin: ");
+           //     Log.d(TAG, "onScanBegin: ");
             }
 
             @Override
             public void onScanEnd() {
-                Log.d(TAG, "onScanEnd: ");
-                ArrayList<FileInfo> fileInfoArrayList= FileScanner.getInstance(MainActivity.this).getAllFiles();
+             //   Log.d(TAG, "onScanEnd: ");
+                ArrayList<FileInfo> fileInfoArrayList = FileScanner.getInstance(MainActivity.this).getAllFiles();
                 for (FileInfo fileInfo : fileInfoArrayList) {
-                    Log.d(TAG, "fileScanner: "+fileInfo.getFilePath());
+               //     Log.d(TAG, "fileScanner: " + fileInfo.getFilePath());
                 }
             }
 
             @Override
             public void onScanning(String paramString, int progress) {
-                Log.d(TAG, "onScanning: " + progress);
+               // Log.d(TAG, "onScanning: " + progress);
+            }
+
+            @Override
+            public void onScanningFiles(FileInfo info, int type) {
+                Log.d(TAG, "onScanningFiles: info=" + info.toString());
+              //  Log.d(TAG, "onScanningFiles: type=" + type);
             }
         });
 

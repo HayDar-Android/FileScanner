@@ -18,6 +18,8 @@ public class FileScanner {
     private Context mContext;
     private static FileScanner instance;
     private static String type;
+    public static final int SCANNER_TYPE_ADD=1;
+    public static final int SCANNER_TYPE_DEL=2;
 
     public static FileScanner getInstance(Context paramContext) {
         if (instance == null) {
@@ -82,11 +84,30 @@ public class FileScanner {
     }
 
     public interface ScannerListener {
+
+        /**
+         * 扫描开始
+         */
         void onScanBegin();
 
+        /**
+         * 扫描结束
+         */
         void onScanEnd();
 
+        /**
+         * 扫描进行中
+         * @param paramString 文件夹地址
+         * @param progress  扫描进度
+         */
         void onScanning(String paramString, int progress);
+
+        /**
+         * 扫描进行中，文件的更新
+         * @param info
+         * @param type  SCANNER_TYPE_ADD：添加；SCANNER_TYPE_DEL：删除
+         */
+        void onScanningFiles(FileInfo info,int type);
     }
 }
 

@@ -149,7 +149,7 @@ public class DBFolderHelper {
         Cursor cursor = null;
         boolean flag = false;
         try {
-            cursor = DBManager.getReadDB(mContext).rawQuery("SELECT * FROM " + FolderDBContract.TABLE_NAME + " where " + FolderDBContract.COLUMN_NAME_DIR_PATH + " = " + filePath, null);
+            cursor = DBManager.getReadDB(mContext).rawQuery("SELECT * FROM " + FolderDBContract.TABLE_NAME + " where " + FolderDBContract.COLUMN_NAME_DIR_PATH + " = '" + filePath+"'", null);
             if (cursor == null) {
                 flag = false;
             }
